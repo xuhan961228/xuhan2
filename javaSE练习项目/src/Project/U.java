@@ -61,7 +61,7 @@ public class U {
 //        System.out.println(result);
         for (CheckTheWeather.ResultBean resultBean : result) {
             System.out.println(resultBean.getDays());
-            System.out.println("城市:"+resultBean.getCitynm() + '\n'+"天气:" +resultBean.getWeather());
+            System.out.println("天气:" +resultBean.getWeather());
         }
 //        System.out.println(tQapi.getResult().toString());
 

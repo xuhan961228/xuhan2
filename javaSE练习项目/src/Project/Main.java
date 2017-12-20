@@ -1,16 +1,12 @@
 package Project;
 
 
-import org.dom4j.DocumentException;
-
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.zip.ZipException;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
         System.out.println("请选择： 1  注册   2  登录");
         Scanner input=new Scanner(System.in);
         int a = input.nextInt();
@@ -49,12 +45,8 @@ public class Main {
                 System.out.println("请输入注册密码");
                 Scanner inputsss=new Scanner(System.in);
                 String password=inputsss.nextLine();
-                try {
-                    Register.register(name, username, password);
-                } catch (ZuceExcePtion zuceExcePtion) {
-                    zuceExcePtion.printStackTrace();
-                    break;
-                }
+                Zuce.zuce(name,username,password);
+
                 break k;
             case 2:
                 System.out.println("请输入登录账号");
@@ -64,7 +56,7 @@ public class Main {
                 Scanner inputsssss=new Scanner(System.in);
                 String password1=inputsssss.nextLine();
 
-                    Login.login(username1,password1);
+                    Zuce.denglu(username1,password1);
 
 
                 System.out.println("请选择：1  查询天气   2  查询手机归属地  3  手速游戏  4  查询手速游戏前十用户");
