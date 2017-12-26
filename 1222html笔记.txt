@@ -1,155 +1,70 @@
- 1.鼠标进入img标签，显示图片A
-   鼠标移出img标签，显示图片B
-<img src="img\111.jpg" onmouseover="this.src='img/999.jpg'">
-2.对于带参数的函数 如果在调用时，传递的参数小于列表中参数总数 那么，未被赋值的形参的值underfined ，如果在调用时，传递的参数大于参数列表中参数总数 那么 多余的参数不会进入函数中  不会影响
-递归函数写九九乘法表
-function show(n) {
-    var content = "";
-    for (var i = 1; i <= n; i++) {
-        content = content + i + "*" + n + "=" + (i * n) + "\t";
-    }
-    console.log(content);
-    if (n != 9) {
-        show(n + 1);
-    }
+1.选择器
+行内选择器（1000）>id选择器(100)>类选择器()10>标签选择器(1)
+总结：范围小的优先级强，如果范围相同，就进原则（先写的会被覆盖）
+伪类选择器：a:hover{} 设置a标签 鼠标一上去的效果.
+1.类选择器
+			 通过给标签元素起一个classname类名的方式
+			 在编写样式时 用类名来和获取该元素
+			 .div1{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+
+                               <div class="div1">我是div1</div>
+
+2.id选择器
+                         元素起一个id名用来获取该元素设置样式使用
+			 一个元素可以同时有id名和类名
+			#div2{
+				width: 100px;
+				height: 100px;
+				background-color: yellow;
+
+                               <div id="div2">我是div2</div>
+3.标签选择器
+                         可以获取当前html文件中所有的标签
+			 用来修改表
+			div{
+				width: 100px;
+				height: 100px;background-color: beige;
+			}
+4.属性选择器：
+选择所有，被赋值name属性的标签
+[name]{
+]
+[name='username']{
 }
-show(1);
-3.交互方式
-function showPrempt(content) {
-    var result = window.prompt(content,"张三");
-    console.log((result));
+5.后代选择器
+在id选择器找到的那个标签中所有的class属性为big后代的标签 都会被选择并赋予
+样式
+#zhangsan.big(
+)
+6.子带选择器
+会选择id为zhangsan的标签的子标签 大于号后面是一个标签选择器 也就是说会选择
+span值标签
+#zhangsan>span{
 }
-//如果用户点击确定；则返回值为输入框中的内容
-        //如果用户点击取消；或按esc键则返回null
-//        用户点击确定 true
-        //其他；false
-        function showConfirm(message) {
-            var confirm = window.confirm(message);
-            console.log(confirm);
-        }
-5.js中的对象
-//this关键字，在给Student的对象 添加属性 这里张三，才是Student对象的属性
-this.name="张三";
-//这里仅仅是载方法中定义的一个局部变量
-var name="李四";
-6.构造函数方法名大写
-7.操作HTML
-document.getElementById("show")：获得id=show的标签
-show.innerHTML="<span style='color: red'>hello js</span>";修改xml中的值
-8.点击变化
-function btnClicked() {
-    document.getElementById("song");
-    song.style.color="red";
+7.通用选择器
+所有的标签都会被选择 优先级很低
+{
 }
-//找到id为btn的标签
-var btn=document.getElementById("btn");
-//将我们写的方法，赋值给onclick
-btn.onclick=btnClicked;
-9.JS数组
-//循环
-//使用forEach方法遍历数组
-//该方法，接收一个回调函数
-//所以我们定义了一个匿名方法 并且给该方法定义了两个参数 当浏览器解析该代码，也就是forEach会自动帮我们调用
-//传入的方法 并且第一个参数会传入数组的元素 第二个参数传入该元素对应的角标
-array.forEach(function (contents, index) {
-    console.log(contents + "\t" + index);
-})
-填入数组
-var songs=["北风卷地白草折，胡天八月即飞雪","忽如一夜春风来，千树万树梨花开"];
-var h1s = document.getElementsByTagName("h1");
-for(var i=0;i<h1s.length;i++){
-    var node=h1s.item(i);
-    console.log(h1s.item(i));
-    node.innerText=songs[i];
-    node.style.color="red";
-}
-10.显示和隐藏
-点击隐藏再点击显示（站着位置）
-function btnClicked2() {
-    var text = document.getElementById("text");
-    //只是让元素不再显示 但是依然占位置
-    if (text.style.visibility!="hidden"){
-        text.style.visibility="hidden";
-    }else {
-        text.style.visibility="visible";
-    }
-}
-点击隐藏再点击显示（没站着位置）
-function btnClicked() {
-    var text = document.getElementById("text");
-    var display = text.style.display;
-    if (display !="none"){
-        //既不显示，也不占位
-        text.style.display="none";
-    }else {
-        text.style.display="block";
-    }
-}
-11.添加和删除
-改变h1的内容属性
-var h1 = document.createElement("h1");
-h1.style.color="red";
-var body = document.getElementsByTagName("body");
-body[0].appendChild(h1);
-使用父元素，删除div
-body[0].removeChild(div[0]);
-12.焦点的获得与失去
-<input id="username" type="text" onfocus="inputFocuc(this)" onblur="inputBlur(this)">
-获得焦点的时候改变
-function inputFocuc(ele) {
-    ele.style.color="blue";
-    ele.style.fontSize="30px";
-}
-失去焦点的时候改变
-function inputBlur(ele) {
-    ele.style.color="red";
-    ele.style.fontSize="15px";
-}
-13
-这个方法可以覆盖内容
-window.onload=function () {
-    document.write("写完了");
-}
-14计时
-计时
-var number ;
-    var numbers=new Array();
-        function start() {
-        var count = document.getElementById("count");
-//        time(count);
-        //让h1计时0 1 2 3 无限递增
-        var n=0;
-       number=setInterval(function () {
-            //每个1000毫秒，来执行一次回调函数
-            count.innerText=(++n);
-        },1000);
-       numbers.push(number);
-    }
-停止
-function stop() {
-            if (numbers.length>0){
-                clearInterval(numbers[numbers.length-1]);
-                //pop 删除数组的最后一个元素
-                numbers.pop();
-                //从哪开始，删几个
-//                numbers.splice(start,count);
-            }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+2.元素的类型分类：
+快级元素：独占一行，可以设置快高属性，快级元素之间的margin属性相遇时 会取值打的
+   			例如：div，h1——h6，table，p
+内联元素 行内元素：可以与其他元素攻占一行，不可以设置宽高，上下行间距
+   例如：span，input，em，strong，mark
+内联块状元素：可以与其他元素攻占一行，可以设置宽高属性，上下行间距
+例如：img
+3.浮动
+顺序文档流：HTML文档流的加载，是从上到下的 在浏览器中显示时，也是从上到下显示的。
+这个顺序就是正常=顺序的文档流
+浮动：从正常文档流中悬浮起来 也就是在浏览器中显示时 不在按照从上到下，从左到右了
+4.定位
+绝对定位（absolute）：如果父级标签也指定了绝对定位，想对于父类，否则相对boby移动
+相对定位（relative）：相对于标签本来的位置移动，并且 该标签的位置依然不能放其他元素
+固定定位（fixed）：相对于浏览器
+5.Js
+javaScript：是一种监本语言  是一种弱语言  是一种解释性语言
+windoe是js中 从浏览器抽象的对象，window是内置对象 不需要我们创建

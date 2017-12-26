@@ -1,0 +1,155 @@
+ 1.鼠标进入img标签，显示图片A
+   鼠标移出img标签，显示图片B
+<img src="img\111.jpg" onmouseover="this.src='img/999.jpg'">
+2.对于带参数的函数 如果在调用时，传递的参数小于列表中参数总数 那么，未被赋值的形参的值underfined ，如果在调用时，传递的参数大于参数列表中参数总数 那么 多余的参数不会进入函数中  不会影响
+递归函数写九九乘法表
+function show(n) {
+    var content = "";
+    for (var i = 1; i <= n; i++) {
+        content = content + i + "*" + n + "=" + (i * n) + "\t";
+    }
+    console.log(content);
+    if (n != 9) {
+        show(n + 1);
+    }
+}
+show(1);
+3.交互方式
+function showPrempt(content) {
+    var result = window.prompt(content,"张三");
+    console.log((result));
+}
+//如果用户点击确定；则返回值为输入框中的内容
+        //如果用户点击取消；或按esc键则返回null
+//        用户点击确定 true
+        //其他；false
+        function showConfirm(message) {
+            var confirm = window.confirm(message);
+            console.log(confirm);
+        }
+5.js中的对象
+//this关键字，在给Student的对象 添加属性 这里张三，才是Student对象的属性
+this.name="张三";
+//这里仅仅是载方法中定义的一个局部变量
+var name="李四";
+6.构造函数方法名大写
+7.操作HTML
+document.getElementById("show")：获得id=show的标签
+show.innerHTML="<span style='color: red'>hello js</span>";修改xml中的值
+8.点击变化
+function btnClicked() {
+    document.getElementById("song");
+    song.style.color="red";
+}
+//找到id为btn的标签
+var btn=document.getElementById("btn");
+//将我们写的方法，赋值给onclick
+btn.onclick=btnClicked;
+9.JS数组
+//循环
+//使用forEach方法遍历数组
+//该方法，接收一个回调函数
+//所以我们定义了一个匿名方法 并且给该方法定义了两个参数 当浏览器解析该代码，也就是forEach会自动帮我们调用
+//传入的方法 并且第一个参数会传入数组的元素 第二个参数传入该元素对应的角标
+array.forEach(function (contents, index) {
+    console.log(contents + "\t" + index);
+})
+填入数组
+var songs=["北风卷地白草折，胡天八月即飞雪","忽如一夜春风来，千树万树梨花开"];
+var h1s = document.getElementsByTagName("h1");
+for(var i=0;i<h1s.length;i++){
+    var node=h1s.item(i);
+    console.log(h1s.item(i));
+    node.innerText=songs[i];
+    node.style.color="red";
+}
+10.显示和隐藏
+点击隐藏再点击显示（站着位置）
+function btnClicked2() {
+    var text = document.getElementById("text");
+    //只是让元素不再显示 但是依然占位置
+    if (text.style.visibility!="hidden"){
+        text.style.visibility="hidden";
+    }else {
+        text.style.visibility="visible";
+    }
+}
+点击隐藏再点击显示（没站着位置）
+function btnClicked() {
+    var text = document.getElementById("text");
+    var display = text.style.display;
+    if (display !="none"){
+        //既不显示，也不占位
+        text.style.display="none";
+    }else {
+        text.style.display="block";
+    }
+}
+11.添加和删除
+改变h1的内容属性
+var h1 = document.createElement("h1");
+h1.style.color="red";
+var body = document.getElementsByTagName("body");
+body[0].appendChild(h1);
+使用父元素，删除div
+body[0].removeChild(div[0]);
+12.焦点的获得与失去
+<input id="username" type="text" onfocus="inputFocuc(this)" onblur="inputBlur(this)">
+获得焦点的时候改变
+function inputFocuc(ele) {
+    ele.style.color="blue";
+    ele.style.fontSize="30px";
+}
+失去焦点的时候改变
+function inputBlur(ele) {
+    ele.style.color="red";
+    ele.style.fontSize="15px";
+}
+13
+这个方法可以覆盖内容
+window.onload=function () {
+    document.write("写完了");
+}
+14计时
+计时
+var number ;
+    var numbers=new Array();
+        function start() {
+        var count = document.getElementById("count");
+//        time(count);
+        //让h1计时0 1 2 3 无限递增
+        var n=0;
+       number=setInterval(function () {
+            //每个1000毫秒，来执行一次回调函数
+            count.innerText=(++n);
+        },1000);
+       numbers.push(number);
+    }
+停止
+function stop() {
+            if (numbers.length>0){
+                clearInterval(numbers[numbers.length-1]);
+                //pop 删除数组的最后一个元素
+                numbers.pop();
+                //从哪开始，删几个
+//                numbers.splice(start,count);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
