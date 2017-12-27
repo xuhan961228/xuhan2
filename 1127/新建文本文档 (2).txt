@@ -1,0 +1,122 @@
+1.当文本加载完后执行
+第一种：
+$(document).ready(function(){
+
+})
+第二种：
+$(function(){
+
+})
+2.鼠标移进移出现象
+链式调用：
+$('div').mouseenter(function(){
+console.log("我进来了")
+}).mouseleave(function(){
+console.log("我进来了")
+})
+3.双击现象
+$('#btn').dblclick(function(){
+console.log("我被点击了")
+})
+4.enter与over的区别
+鼠标移进去+1：
+$('#left').mouseenter(function(){
+$(this).text(++left)
+}).mouseleave(function(){
+
+})
+$('.right').mouseenter(function(){
+$('#right').text(++right)
+}).mouseout(function(){
+
+})
+5JQ动画
+点击div移动：
+$('div').click(function(){
+第一个参数：怎么动？通过更改css样式来实现动画
+第二个参数：多长时间完成：毫秒
+第三个参数：动画完成之后要干什么 是一个回调函数
+$(this).animate(("marginLeft":"200px","marginTop":"200px"))
+},500,function(){})
+$('div').click(function () {
+    $(this).animate({"marginLeft":"200px",
+    },500,function () {
+        $(this).animate({"marginTop":"200px"},500,function () {
+            $(this).animate({"marginLeft":"0"},500,function () {
+                $(this).animate({"marginTop":"0"},500,function () {
+                })
+            })
+        })
+    })
+})
+6.动画列队
+$('div').click(function () {
+    $(this).animate({"marginLeft":"200px"},800)
+        .animate({"marginTop":"200px"},800)
+        .animate({"marginLeft":"0px"},800)
+        .animate({"marginTop":"0px"},800)
+})
+7.操作元素属性（attr）
+使他执行bigRed的类选择器
+$('div').attr({"class": "bigRed"});
+8.操作元素样式
+$('div').css({"width":"200px","height":"200px","backgroundColor":"red"});
+9.添加和删除元素
+添加：
+$('div').append('添加的内容').before('之前添加内容').after('之后添加内容')。append($('<p>')
+.css({"height":"100px"})).after($('<div>'));
+删除：
+删除p标签
+$('p').remove();
+10.ajax异步获取
+$('#btn').click(function(){
+$.get("地址",function(参数一内容data,参数二是否成功status){
+if(status=="cuccess"){
+var jsondata=$.parseJSON(data);
+if(jsondata !=null){
+$('table').apped($('<tr>').($('<td>').text("姓名"))
+.append($('<td>').text("分数")));
+$.each(jsondata,function(index,obj){
+$('table').append(
+$('<tr>').append(
+$('<>td').text(obj['nickname'])
+).append(
+$('<>td').text(obj['csore'])
+)
+)
+})
+}
+}
+})
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
