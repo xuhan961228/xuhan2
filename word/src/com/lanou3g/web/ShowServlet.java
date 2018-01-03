@@ -24,13 +24,13 @@ public class ShowServlet extends HttpServlet {
 		resp.addHeader("Access-Control-Allow-Methods","POST");
 // 响应头设置
 		resp.addHeader("Access-Control-Allow-Headers","x-requested-with,content-type");
-		List<User> users;
-		System.out.println("111");
-		users = userDao.queryAll();
-
-		JSONArray jsonArray =
-				JSONArray.fromObject(users);
-		resp.getWriter().write(jsonArray.toString());
+//		List<User> users;
+//		System.out.println("111");
+//		users = userDao.queryAll();
+//
+//		JSONArray jsonArray =
+//				JSONArray.fromObject(users);
+//		resp.getWriter().write(jsonArray.toString());
 
 	}
 }

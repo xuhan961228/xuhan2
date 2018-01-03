@@ -8,31 +8,19 @@
 </head>
 <body>
 <table>
-    <tr>
-        <td>姓名</td>
-        <td>密码</td>
-    </tr>
+    <h1>用户名：<span id="username"></span></h1>
+    <h1>密码：<span id="password"></span></h1>
 
 </table>
-<button>点我看信息</button>
+
 </body>
 <script type="text/javascript">
-    $('button').click(function () {
-        $.getJSON("http://localhost:8080/zhuye",function (data, status) {
+    $.getJSON("http://localhost:8080/zhuye",
+        function (json,status) {
             if(status == "success"){
-                $.each(data,function (index, obj) {
-                    var username = obj['username'];
-                    var password = obj['password'];
-                    $('table').append(
-                        $('<tr>').append(
-                            $('<td>').text(username)
-                        ).append(
-                            $('<td>').text(password)
-                        )
-                    )
-                })
+                $('#username').text(json['username']);
+                $('#password').text(json['password']);
             }
         })
-    })
 </script>
 </html>

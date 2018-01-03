@@ -1,8 +1,10 @@
 package com.lanou3g.dao;
 
+import com.lanou3g.domain.Book;
 import com.lanou3g.domain.User;
 import com.lanou3g.util.JdbcUtil;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
@@ -16,7 +18,7 @@ public class UserDao {
 	private QueryRunner qr = new QueryRunner();
 
 	public boolean insertUser(User user){
-		String sql = "insert into table_name values(?,?)";
+		String sql = "insert into user values(null,?,?)";
 		Connection conn = null;
 		try {
 			conn = JdbcUtil.getConnection();
@@ -28,19 +30,16 @@ public class UserDao {
 	return true;
 	}
 
-	public List<User> queryAll() {
+	public List<Book> queryAll() {
 		System.out.println("222");
-		String sql = "select * from table_name";
+		String sql = "select * from book";
 		Connection conn = null;
 		conn = JdbcUtil.getConnection();
 		try {
-			List<User> users =
-
-					qr.query(conn, sql, new BeanListHandler<User>(User.class));
-
-			System.out.println(users);
-
-			return users;
+			List<Book> books =
+					qr.query(conn, sql, new BeanListHandler<Book>(Book.class));
+			System.out.println(books);
+			return books;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -61,13 +60,21 @@ public class UserDao {
 
 		
 	}
-	public void denglu(User user){
-		String sql="select username from table_name";
-		Connection conn=null;
-		conn=JdbcUtil.getConnection();
-
-
+	public User findByName(String username) throws SQLException {
+		String sql = "select password from user where username=?";
+		Connection conn = null;
+		conn = JdbcUtil.getConnection();
+		try {
+			User user = qr.query(conn, sql, new BeanHandler<User>(User.class),username);
+			return user;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			conn.close();
+		}
+		return null;
 	}
+
 
 
 

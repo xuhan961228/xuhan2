@@ -24,9 +24,9 @@ public class RegisterServlet extends HttpServlet {
         if (username==null||password==null){
             RequestDispatcher dispatcher = request.getRequestDispatcher("/register");
             dispatcher.include(request,response);
-            System.out.println("sss");
+//            System.out.println("sss");
         }else {
-            System.out.println("xxxx");
+//            System.out.println("xxxx");
             Map<String, String[]> parameterMap = request.getParameterMap();
             User user=new User();
             try {
@@ -37,6 +37,9 @@ public class RegisterServlet extends HttpServlet {
                 e.printStackTrace();
             }
             userDao.insertUser(user);
+//            System.out.println("2222");
+//            userDao.findByName(username);
+
 //        System.out.println("dddd");
             response.setStatus(302);
             response.sendRedirect("http://localhost:8080/login.html");

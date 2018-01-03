@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="@localhost">
+<dataSource name="@localhost [2]">
   <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
     <root id="1"/>
     <schema id="2" parent="1" name="homeword">
@@ -13,236 +13,172 @@
     <schema id="7" parent="1" name="test"/>
     <schema id="8" parent="1" name="word"/>
     <schema id="9" parent="1" name="xh"/>
-    <schema id="10" parent="1" name="xxx"/>
-    <schema id="11" parent="1" name="xx">
-      <Visible>1</Visible>
-    </schema>
+    <schema id="10" parent="1" name="xx"/>
+    <schema id="11" parent="1" name="xxx"/>
     <table id="12" parent="2" name="book"/>
     <table id="13" parent="2" name="comment"/>
     <table id="14" parent="2" name="hw_user"/>
     <table id="15" parent="2" name="type"/>
     <table id="16" parent="2" name="u_coll_bk"/>
     <table id="17" parent="2" name="xxx"/>
-    <table id="18" parent="11" name="book"/>
-    <table id="19" parent="11" name="table_name"/>
-    <table id="20" parent="11" name="user"/>
-    <table id="21" parent="11" name="xxx"/>
-    <column id="22" parent="12" name="bkid">
+    <column id="18" parent="12" name="bkid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="23" parent="12" name="bkname">
+    <column id="19" parent="12" name="bkname">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="24" parent="12" name="author">
+    <column id="20" parent="12" name="author">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="25" parent="12" name="tid">
+    <column id="21" parent="12" name="tid">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="26" parent="12" name="book_fk_type">
+    <index id="22" parent="12" name="book_fk_type">
       <ColNames>tid</ColNames>
     </index>
-    <key id="27" parent="12" name="PRIMARY">
+    <key id="23" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>bkid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="28" parent="12" name="book_fk_type">
+    <foreign-key id="24" parent="12" name="book_fk_type">
       <ColNames>tid</ColNames>
       <RefSchemaName>homeword</RefSchemaName>
       <RefTableName>type</RefTableName>
       <RefColNames>tid</RefColNames>
     </foreign-key>
-    <column id="29" parent="13" name="comid">
+    <column id="25" parent="13" name="comid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="30" parent="13" name="content">
+    <column id="26" parent="13" name="content">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="31" parent="13" name="bkid">
+    <column id="27" parent="13" name="bkid">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="32" parent="13" name="uid">
+    <column id="28" parent="13" name="uid">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="33" parent="13" name="datetime">
+    <column id="29" parent="13" name="datetime">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="34" parent="13" name="comment_fk_bkid">
+    <index id="30" parent="13" name="comment_fk_bkid">
       <ColNames>bkid</ColNames>
     </index>
-    <index id="35" parent="13" name="comment_fk_uid">
+    <index id="31" parent="13" name="comment_fk_uid">
       <ColNames>uid</ColNames>
     </index>
-    <key id="36" parent="13" name="PRIMARY">
+    <key id="32" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>comid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="37" parent="13" name="comment_fk_bkid">
+    <foreign-key id="33" parent="13" name="comment_fk_bkid">
       <ColNames>bkid</ColNames>
       <RefSchemaName>homeword</RefSchemaName>
       <RefTableName>book</RefTableName>
       <RefColNames>bkid</RefColNames>
     </foreign-key>
-    <foreign-key id="38" parent="13" name="comment_fk_uid">
+    <foreign-key id="34" parent="13" name="comment_fk_uid">
       <ColNames>uid</ColNames>
       <RefSchemaName>homeword</RefSchemaName>
       <RefTableName>hw_user</RefTableName>
       <RefColNames>uid</RefColNames>
     </foreign-key>
-    <column id="39" parent="14" name="uid">
+    <column id="35" parent="14" name="uid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="40" parent="14" name="uname">
+    <column id="36" parent="14" name="uname">
       <Position>2</Position>
       <DataType>char(60)|0</DataType>
     </column>
-    <column id="41" parent="14" name="age">
+    <column id="37" parent="14" name="age">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="42" parent="14" name="loc">
+    <column id="38" parent="14" name="loc">
       <Position>4</Position>
       <DataType>char(50)|0</DataType>
     </column>
-    <key id="43" parent="14" name="PRIMARY">
+    <key id="39" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>uid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="44" parent="15" name="tid">
+    <column id="40" parent="15" name="tid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="45" parent="15" name="tname">
+    <column id="41" parent="15" name="tname">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="46" parent="15" name="PRIMARY">
+    <key id="42" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>tid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="47" parent="16" name="uid">
+    <column id="43" parent="16" name="uid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="48" parent="16" name="bkid">
+    <column id="44" parent="16" name="bkid">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="49" parent="16" name="uk_ucb">
+    <index id="45" parent="16" name="uk_ucb">
       <ColNames>uid
 bkid</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="50" parent="16" name="u_coll_bkid_fk_bkid">
+    <index id="46" parent="16" name="u_coll_bkid_fk_bkid">
       <ColNames>bkid</ColNames>
     </index>
-    <key id="51" parent="16" name="uk_ucb">
+    <key id="47" parent="16" name="uk_ucb">
       <ColNames>uid
 bkid</ColNames>
       <UnderlyingIndexName>uk_ucb</UnderlyingIndexName>
     </key>
-    <foreign-key id="52" parent="16" name="u_coll_bkid_fk_uid">
+    <foreign-key id="48" parent="16" name="u_coll_bkid_fk_uid">
       <ColNames>uid</ColNames>
       <RefSchemaName>homeword</RefSchemaName>
       <RefTableName>hw_user</RefTableName>
       <RefColNames>uid</RefColNames>
     </foreign-key>
-    <foreign-key id="53" parent="16" name="u_coll_bkid_fk_bkid">
+    <foreign-key id="49" parent="16" name="u_coll_bkid_fk_bkid">
       <ColNames>bkid</ColNames>
       <RefSchemaName>homeword</RefSchemaName>
       <RefTableName>book</RefTableName>
       <RefColNames>bkid</RefColNames>
     </foreign-key>
-    <column id="54" parent="17" name="username">
+    <column id="50" parent="17" name="username">
       <Position>1</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="55" parent="17" name="gender">
-      <Position>2</Position>
-      <DataType>varchar(50)|0</DataType>
-    </column>
-    <column id="56" parent="18" name="bid">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="57" parent="18" name="bname">
-      <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
-    </column>
-    <column id="58" parent="18" name="author">
-      <Position>3</Position>
-      <DataType>varchar(100)|0</DataType>
-    </column>
-    <column id="59" parent="18" name="price">
-      <Position>4</Position>
-      <DataType>varchar(100)|0</DataType>
-    </column>
-    <key id="60" parent="18" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>bid</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="61" parent="19" name="username">
-      <Position>1</Position>
-      <DataType>char(100)|0</DataType>
-    </column>
-    <column id="62" parent="19" name="password">
-      <Position>2</Position>
-      <DataType>char(100)|0</DataType>
-    </column>
-    <column id="63" parent="20" name="uid">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="64" parent="20" name="username">
-      <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
-    </column>
-    <column id="65" parent="20" name="password">
-      <Position>3</Position>
-      <DataType>varchar(100)|0</DataType>
-    </column>
-    <key id="66" parent="20" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>uid</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="67" parent="21" name="username">
-      <Position>1</Position>
-      <DataType>varchar(50)|0</DataType>
-    </column>
-    <column id="68" parent="21" name="gender">
+    <column id="51" parent="17" name="gender">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
