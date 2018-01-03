@@ -1,92 +1,38 @@
-1.重定向的特点
-浏览器地址发生变化：本来要访问的是/login重定向变成/index.jsp
-两次请求：第一次请求/login，服务器返回重定向状态码
-   指定第二次请求路径，然后浏览器开始第二次请求
-路径范围：重定向是让浏览器再次发起一个请求，路径可以是任意一个url，既可以向我们现在这        
-                  样访问应用/index.jpg也可以访问外部应用的网站，比如百度
-路径格式：是一个绝对路径，因为对于浏览器来说，并不知道，再次请求时要发给那个应用，所
-                  以要绝对路径来
-2.响应体和响应头
-响应体：就是我们原来传给前端的JSON数据，就属于响应体
-响应头：在后端发送一些键值对到前端，一般用来设置某些信息
-状态码：表示当次请求的状态，是成功了（200）还是重定向了（302）还是错误（404，500）
-3.请求头
-浏览器发起请求时，会封装一些键值对传输给服务器
-这些键值对就叫请求头，（因为在发起请求时封装的）通过Referer请求头的值，可以判断当次请
-求是不是从本应用中发起的，如果只为null：说明浏览器中直接输入的  如果值不为null：说明是
-从本应用中发起的
-add与set的区别
-set是某一个头，设置内容
-add是某一个头，添加内容
-也就是说多个add，那么该头有多个内容
-多个set那么该头之前的set被覆盖
+1.编码问题
+当使用response。getWriter（）来想客服端发送字符数据时，如果在之前没有设置编码，那么默认使用iso，因为iso不支持中文，一定会乱码
+在使用respon.getWriter()之前，可以使用response.setCharacterEnconding()来设置字符流的编码gdk或utf-8，一般都会设置成utf-8；
+在使用response.getEriter()之前，可以使用response.setHeader(Content-Type,"text/html;charset=utf-8");来通知浏览器，服务器用的是utf-8编码
+setHeader("Content-Type","text/html;charset=utf-8");可以完成设置=服务器编码和通知浏览器服务器是什么编码两步，快捷写法是：response.setContentType("text/html;charset=utf-8")
+2.jsp
+<%   %>在servlet方法中
+<%!   %>在类中
 
-4.Request的各种方法
-5.BeanUtils的populated方法
-6.请求转发与请求包含
-请求转发：只有最后一个目标资源，可以响应浏览器
-请求包含：多个Servlet都可以响应浏览器
-获得转发者，并制定目标路径
-RequestDispatcher dispatcher=request.getRequestDispatcher("/路径")
-dispatcher.forward(request,reaponse);
-请求包含
-dispatcher.include(request,response);
+错误页面
+在1页面写入 吐过错误就会跳转到页面2
+<%@page errorPage="2.jsp"%>
+在2页面上面写入
+<%@page isErrorPage="true"%>
 
-7.请求转发与包含与重定向的区别
-次数
-转发：一次
-重定向：两次
-地址栏路径变化
-转发：不会改变
-重定向：会改变重定向的目标路径
-范围
-转发：只会转发到本应用中的资源
-重定向：任意路径
-路径
-转发：相对路径
-重定向：绝对路径
-重定向实际上在浏览器执行的，而请求转发是在服务器上执行的
-8.域对象
-域就表示一个范围
-从请求发起到请求响应的这个范围有request对象表示，也就是request域对象
-域对象和参数额区别
-参数是浏览器发起的传给服务器的
-域属性是在服务器内部设置的
-9.servletContext是Servlet上下文对象，表示Servlet所处的环境
+包含
+在boby中写入
+<%@include file="1.jsp"%>
+<h1>111</h1>
+最后就会显示1页面中的内容再显示本页面中的内容（都能响应页面）
 
-Tomcat，也叫做Servlet容器，当Tomcat启动时，对应应用的ServletContext对象就会被创建当Tomcat关闭时，会将ServletContext销毁。所以ServletContext的声明周期最长
-10.初始化参数
-全局参数：当程序启动时，就已经设置好的内容，全局参数需要在web.xml中配置因为是全局
-                  的，所以每个Servlet都能得到
-局部参数：为每个Servlet单独配置的初始化参数
-servletConfig
-在web.xml中，对每个Servlet的配置，都会被插入抽象成一个servletConfig对象在Sservlet中获得DervletConfig，则这个servletConfig中的内容就都是Servlet的配置信息
+转发
+在boby中写入
+<jsp:forward page="1.jsp"%>
+最后就会显示1页面中的内容不再显示本页面中的内容（只有转发到的页面才能响应页面）
 
+session
+String username = request.getParameter("username");
+获得session
+HttpSession session = request.getSession();
+得到
+session.getAttribute("username")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+代理域
+使用PageContext,可以向其他域对象中
+设置属性
+给request域设置域属性
+pageComtext.setAttribute("game","LOL",pageContext,REQUEST_CSCOPE)
