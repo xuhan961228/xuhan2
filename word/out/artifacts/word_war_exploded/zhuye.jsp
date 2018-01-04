@@ -12,29 +12,33 @@
     <script src="js/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-<h1>欢迎来到书店</h1>
+
 <%
 
 
     if (session.getAttribute("username")!=null){
-        System.out.println(session.getAttribute("username"));
+//        out.write("用户名为："+pageContext.findAttribute("username").toString()+"-----------------------"+
+//                "密码为："+pageContext.findAttribute("password").toString());
+        System.out.println("ddddddddddddddddddd");
+%>  <table border="2px" id="b">
+    </table>
+<h1>欢迎来到书店</h1>
+<a href="login.jsp"><input type="submit" style="font-size: 30px" value="退出"></a>
+<%
 
-        out.write("用户名为："+pageContext.findAttribute("username").toString()+"-----------------------"+
-                "密码为："+pageContext.findAttribute("password").toString());
-
-
-
-}else {
+    }else {
 %>
-<a href="login.html">请去登录</a>
+<h1 style="color: red">老铁你还没登录呢</h1>
+<a href="login.jsp" style="font-size: 40px">请去登录</a>
 <%
     }
 %>
-<form action="quit" method="post">
-    <input type="submit">
-</form>
-<table style="border: 2px" id="b">
-</table>
+<%--${username}账号--%>
+<%--${password}密码--%>
+
+
+
+
 
 
 </body>

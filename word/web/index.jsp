@@ -9,7 +9,9 @@
 <html>
   <head>
     <title>$Title$</title>
-
+<%
+    request.getSession().getAttribute("books");
+%>
   </head>
   <body>
 

@@ -31,7 +31,7 @@ public class ShowServlet extends HttpServlet {
 
 		UserDao userDao=new UserDao();
 		List<Book> books = userDao.queryAll();
-		System.out.println(books);
+//		System.out.println(books);
 		JSONArray jsonArray = JSONArray.fromObject(books);
 		response.getWriter().write(jsonArray.toString());
 

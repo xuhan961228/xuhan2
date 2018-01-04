@@ -7,12 +7,10 @@ import net.sf.json.JSONArray;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
@@ -31,41 +29,29 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("username",username);
         session.setAttribute("password",password);
+        Cookie cookie=new Cookie("username",username);
+        cookie.setMaxAge(60*60*24*30);
+        response.addCookie(cookie);
+//        cookie.setPath();
 
+        System.out.println(username+"ddddddddddd");
         try {
             User user = userDao.findByName(username);
-//            System.out.println(user);
             if (user!=null&&user.getPassword().equals(password)){
-//                System.out.println("1111");
-                List<Book> books = userDao.queryAll();
-//                HttpSession session1 = request.getSession();
+                ServletContext servletContext = request.getServletContext();
+                servletContext.setAttribute("username",username);
+                servletContext.setAttribute("password",password);
 
-                JSONArray jsonArray = JSONArray.fromObject(books);
-                System.out.println(jsonArray.toString());
-
-//                Map<String, String[]> parameterMap = request.getParameterMap();
-//                BeanUtils.populate(book,parameterMap);
-//                for (Map.Entry<String, String[]> stringEntry : parameterMap.entrySet()) {
-//                    System.out.println("------------"+stringEntry.getKey() + Arrays.toString(stringEntry.getValue()));
-//                }
-
-                getServletContext().setAttribute("book",books);
-                
 
 
                 response.sendRedirect("http://localhost:8080/zhuye.jsp");
             }else {
-//                System.out.println("ddd");
                 response.setStatus(302);
-                response.sendRedirect("http://localhost:8080/login.html");
+                response.sendRedirect("http://localhost:8080/login.jsp");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-//        List<Book> books = userDao.queryAll();
-//        System.out.println(books);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

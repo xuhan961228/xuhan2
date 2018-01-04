@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
 
 //        System.out.println("dddd");
             response.setStatus(302);
-            response.sendRedirect("http://localhost:8080/login.html");
+            response.sendRedirect("http://localhost:8080/login.jap");
 //        response.getWriter().write("SUCCESS");
         }
 
